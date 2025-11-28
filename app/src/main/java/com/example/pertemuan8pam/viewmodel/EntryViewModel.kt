@@ -1,18 +1,21 @@
 package com.example.pertemuan8pam.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.pertemuan8pam.repositori.RepositoriSiswa
 import com.example.pertemuan8pam.room.Siswa
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel()
 {
     /**
      * Berisi status siswa saat ini
      */
-    var uiStatSiswa by mutableListOf(UIStateSiswa())
+    var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    private fun validasiInput(uiState: DetailSiswa = uiStatSiswa.detailSiswa
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa
     ): Boolean{
         return with(receiver = uiState) {
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
@@ -20,14 +23,14 @@ class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel()
     }
 
     fun updateUIState(detailSiswa: DetailSiswa){
-        uiStatSiswa =
+        uiStateSiswa =
             UIStateSiswa(detailSiswa = detailSiswa, isEntryValid =
             validasiInput(detailSiswa))
     }
 
     suspend fun saveSiswa(){
         if (validasiInput()) {
-            repositoriSiswa.insertSiswa(uiStatSiswa.detailSiswa.toSiswa())
+            repositoriSiswa.insertSiswa(uiStateSiswa.detailSiswa.toSiswa())
         }
     }
 }
