@@ -2,6 +2,7 @@ package com.example.pertemuan8pam.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.pertemuan8pam.repositori.RepositoriSiswa
+import com.example.pertemuan8pam.room.Siswa
 
 class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel()
 {
@@ -42,3 +43,16 @@ data class DetailSiswa(
     val alamat: String = "",
     val telpon: String = "",
 )
+
+fun DetailSiswa.toSiswa(): Siswa = Siswa(
+    id = id,
+    nama = nama,
+    alamat = alamat,
+    telpon = telpon
+)
+
+fun Siswa.toUiStateSiswa(isEntryValid: Boolean = false): UIStateSiswa =
+    UIStateSiswa(
+        detailSiswa = this.toDetailSiswa(),
+        isEntryValid = isEntryValid
+    )
