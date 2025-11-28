@@ -9,12 +9,12 @@ interface ContainerApp{
 }
 
 class ContainerDataApp(private val context: Context):
-        ContainerApp{
+    ContainerApp{
     override val repositoriSiswa: RepositoriSiswa by lazy {
         OfflineRepositoriSiswa(
             siswaDao = DatabaseSiswa.getDatabase(context).siswaDao())
-        }
-        }
+    }
+    }
 
 class AplikasiSiswa : Application(){
     lateinit var container: ContainerApp
