@@ -1,5 +1,6 @@
 package com.example.pertemuan8pam.repositori
 
+import android.app.Application
 import android.content.Context
 import com.example.pertemuan8pam.room.DatabaseSiswa
 
@@ -14,3 +15,12 @@ class ContainerDataApp(private val context: Context):
             siswaDao = DatabaseSiswa.getDatabase(context).siswaDao())
         }
         }
+
+class AplikasiSiswa : Application(){
+    lateinit var container: ContainerApp
+
+    override fun onCreate() {
+        super.onCreate()
+        container = ContainerDataApp(context = this)
+    }
+}
