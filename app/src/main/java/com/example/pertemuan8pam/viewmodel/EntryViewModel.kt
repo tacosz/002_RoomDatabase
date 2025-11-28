@@ -16,13 +16,13 @@ class EntryViewModel(private val repositoriSiswa: RepositoriSiswa): ViewModel()
         private set
 
     private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa
-    ): Boolean{
-        return with(receiver = uiState) {
+        ): Boolean{
+        return with(uiState) {
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
     }
 
-    fun updateUIState(detailSiswa: DetailSiswa){
+    fun updateUiState(detailSiswa: DetailSiswa){
         uiStateSiswa =
             UIStateSiswa(detailSiswa = detailSiswa, isEntryValid =
             validasiInput(detailSiswa))

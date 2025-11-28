@@ -8,6 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.pertemuan8pam.view.route.DestinasiEntry
 import com.example.pertemuan8pam.view.route.DestinasiHome
+import com.example.pertemuan8pam.view.EntrySiswaScreen
+import com.example.pertemuan8pam.view.HomeScreen
 import androidx.navigation.compose.composable
 
 @Composable
@@ -22,7 +24,10 @@ fun HostNavigasi(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ){
-    NavHost(navController=navController, startDestination = DestinasiHome.route, modifier = Modifier)
+    NavHost(
+        navController=navController,
+        startDestination = DestinasiHome.route,
+        modifier = Modifier)
     {
         composable(DestinasiHome.route){
             HomeScreen(

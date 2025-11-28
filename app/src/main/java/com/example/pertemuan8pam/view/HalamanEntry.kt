@@ -46,7 +46,7 @@ fun EntrySiswaScreen(
         topBar = {
             SiswaTopAppBar(
                 title = stringResource(DestinasiEntry.titleRes),
-                canNavigate = true,
+                canNavigateBack = true,
                 scrollBehavior = scrollBehavior
             )
         }
