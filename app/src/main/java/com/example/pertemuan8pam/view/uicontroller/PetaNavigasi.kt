@@ -14,6 +14,7 @@ import com.example.pertemuan8pam.view.route.DestinasiHome
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.pertemuan8pam.view.DetailSiswaScreen
+import com.example.pertemuan8pam.view.EditSiswaScreen
 import com.example.pertemuan8pam.view.route.DestinasiDetailSiswa
 import com.example.pertemuan8pam.view.route.DestinasiDetailSiswa.itemIdArg
 import com.example.pertemuan8pam.view.route.DestinasiEditSiswa
@@ -38,9 +39,9 @@ fun HostNavigasi(
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                navigateToItemUpdate = {
+                navigateToDetail = {
                     navController.navigate("${DestinasiDetailSiswa.route}/${it}")
-                }
+                },
             )
         }
         composable(DestinasiEntry.route) {
@@ -53,7 +54,9 @@ fun HostNavigasi(
             })
         ){
             DetailSiswaScreen(
-                navigateToEditItem = { navController.navigate("${DestinasiEditSiswa.route}/$it") }
+                navigateToEditItem = {
+                    navController.navigate("${DestinasiEditSiswa.route}/${it}")
+                },
                 navigateBack = {navController.navigateUp()}
             )
         }
