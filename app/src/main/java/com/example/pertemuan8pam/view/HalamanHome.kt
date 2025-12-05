@@ -42,6 +42,7 @@ import androidx.compose.runtime.getValue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    //tambah
     navigateToDetail: (Int) -> Unit,
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
@@ -75,6 +76,7 @@ fun HomeScreen(
         val uiStateSiswa by viewModel.homeUiState.collectAsState()
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
+            //
             onSiswaClick = navigateToDetail,
             modifier = Modifier
                 .padding(innerPadding)
@@ -85,6 +87,7 @@ fun HomeScreen(
 
 @Composable
 fun BodyHome(
+    //
     onSiswaClick : (Int) -> Unit,
     itemSiswa: List<Siswa>,
     modifier: Modifier= Modifier
@@ -101,6 +104,7 @@ fun BodyHome(
         } else{
             ListSiswa(
                 itemSiswa = itemSiswa,
+                //
                 onSiswaClick = {onSiswaClick(it.id)},
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
@@ -110,6 +114,7 @@ fun BodyHome(
 
 @Composable
 fun ListSiswa(
+    //
     onSiswaClick : (Siswa) -> Unit,
     itemSiswa: List<Siswa>,
     modifier: Modifier= Modifier
@@ -120,6 +125,7 @@ fun ListSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
+                    //
                     .clickable { onSiswaClick(person) }
             )
         }
