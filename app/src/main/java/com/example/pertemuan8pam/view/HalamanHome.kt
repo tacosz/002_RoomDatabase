@@ -1,5 +1,6 @@
 package com.example.pertemuan8pam.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -41,6 +42,7 @@ import androidx.compose.runtime.getValue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    navigateToDetail: (Int) -> Unit,
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -73,6 +75,7 @@ fun HomeScreen(
         val uiStateSiswa by viewModel.homeUiState.collectAsState()
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
+            onSiswaClick = navigateToDetail,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -82,6 +85,7 @@ fun HomeScreen(
 
 @Composable
 fun BodyHome(
+    onSiswaClick : (Int) -> Unit,
     itemSiswa: List<Siswa>,
     modifier: Modifier= Modifier
 ){
@@ -97,6 +101,7 @@ fun BodyHome(
         } else{
             ListSiswa(
                 itemSiswa = itemSiswa,
+                onSiswaClick = {onSiswaClick(it.id)},
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -105,6 +110,7 @@ fun BodyHome(
 
 @Composable
 fun ListSiswa(
+    onSiswaClick : (Siswa) -> Unit,
     itemSiswa: List<Siswa>,
     modifier: Modifier= Modifier
 ){
@@ -114,6 +120,7 @@ fun ListSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
+                    .clickable { onSiswaClick(person) }
             )
         }
     }

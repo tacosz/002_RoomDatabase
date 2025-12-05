@@ -11,6 +11,7 @@ import com.example.pertemuan8pam.view.HomeScreen
 import com.example.pertemuan8pam.view.route.DestinasiEntry
 import com.example.pertemuan8pam.view.route.DestinasiHome
 import androidx.navigation.compose.rememberNavController
+import com.example.pertemuan8pam.view.route.DestinasiDetailSiswa
 
 
 @Composable
@@ -32,10 +33,15 @@ fun HostNavigasi(
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
+                navigateToDetail = {navController.navigate(DestinasiDetailSiswa.route)}
             )
         }
         composable(DestinasiEntry.route) {
             EntrySiswaScreen(navigateBack = { navController.popBackStack() })
+        }
+
+        composable (DestinasiDetailSiswa.route){
+
         }
     }
 }

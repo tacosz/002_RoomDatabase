@@ -2,18 +2,21 @@ package com.example.pertemuan8pam.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pertemuan8pam.repositori.RepositoriSiswa
+import com.example.pertemuan8pam.view.route.DestinasiDetailSiswa
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.SharingStarted
-class DetailViewModel(
+
+class DetailViewModel (
     savedStateHandle: SavedStateHandle,
     private val repositoriSiswa: RepositoriSiswa
-): ViewModel(){
-    private val idSiswa: Int = checkNotNull(savedStateHandle[DetailViewModel.itemIdArg])
+) : ViewModel(){
+
+    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetailSiswa.itemIdArg])
 
     val uiDetailState: StateFlow<DetailSiswaUiState> =
         repositoriSiswa.getSiswaStream(idSiswa)
@@ -34,6 +37,9 @@ class DetailViewModel(
     }
 }
 
+/**
+ * UI state for ItemDetailsScreen
+ */
 data class DetailSiswaUiState(
     val detailSiswa: DetailSiswa = DetailSiswa()
 )
