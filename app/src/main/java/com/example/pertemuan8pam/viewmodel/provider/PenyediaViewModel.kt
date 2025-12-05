@@ -7,9 +7,9 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pertemuan8pam.repositori.AplikasiSiswa
 import com.example.pertemuan8pam.viewmodel.DetailViewModel
+import com.example.pertemuan8pam.viewmodel.EditViewModel
 import com.example.pertemuan8pam.viewmodel.EntryViewModel
 import com.example.pertemuan8pam.viewmodel.HomeViewModel
-import kotlinx.coroutines.channels.Channel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
@@ -23,6 +23,9 @@ object PenyediaViewModel {
         initializer {
             DetailViewModel(this.createSavedStateHandle(),
             aplikasiSiswa().container.repositoriSiswa)
+        }
+        initializer {
+            EditViewModel(this.createSavedStateHandle(),aplikasiSiswa().container.repositoriSiswa)
         }
     }
 }
